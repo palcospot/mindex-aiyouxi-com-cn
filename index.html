@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes">
+    <title>爱游戏 · 站点介绍</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #fafaf9;
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', 'Noto Sans', sans-serif;
+            color: #1e1e1e;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .page {
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 2.5rem 1.5rem 4rem;
+        }
+
+        /* --- hero --- */
+        .hero {
+            padding: 2.8rem 0 2.2rem;
+            border-bottom: 1px solid #e9e6e1;
+        }
+
+        .hero-headline {
+            font-size: 2.4rem;
+            font-weight: 500;
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+            margin-bottom: 0.75rem;
+        }
+
+        .hero-headline span {
+            display: inline-block;
+            background: #f0ede8;
+            padding: 0 0.3em;
+            border-radius: 4px;
+            color: #2c2c2c;
+        }
+
+        .hero-sub {
+            font-size: 1.1rem;
+            color: #5b5b5b;
+            max-width: 600px;
+            margin-top: 0.6rem;
+            font-weight: 400;
+        }
+
+        .hero-sub a {
+            color: #1e1e1e;
+            text-decoration: underline;
+            text-underline-offset: 3px;
+            text-decoration-thickness: 1px;
+            font-weight: 450;
+            transition: color 0.15s;
+        }
+
+        .hero-sub a:hover {
+            color: #4a4a4a;
+            text-decoration-color: #a09c94;
+        }
+
+        /* --- 通用 section --- */
+        section {
+            padding: 2.6rem 0;
+            border-bottom: 1px solid #edebe7;
+        }
+
+        section:last-of-type {
+            border-bottom: none;
+        }
+
+        .section-title {
+            font-size: 1.3rem;
+            font-weight: 500;
+            letter-spacing: -0.01em;
+            margin-bottom: 1.2rem;
+            color: #1c1c1c;
+        }
+
+        .section-title small {
+            font-weight: 400;
+            font-size: 0.9rem;
+            color: #7a7a7a;
+            margin-left: 0.4rem;
+        }
+
+        .section-text {
+            font-size: 1rem;
+            color: #2f2f2f;
+            max-width: 640px;
+        }
+
+        .section-text p {
+            margin-bottom: 1.1rem;
+        }
+
+        .section-text p:last-child {
+            margin-bottom: 0;
+        }
+
+        .section-text a {
+            color: #1e1e1e;
+            text-decoration: underline;
+            text-underline-offset: 2px;
+            text-decoration-thickness: 0.5px;
+            font-weight: 450;
+        }
+
+        .section-text a:hover {
+            color: #3d3d3d;
+        }
+
+        /* --- 优势区 卡片网格 --- */
+        .grid-2col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem 2rem;
+            margin-top: 0.4rem;
+        }
+
+        .feature-item {
+            background: #ffffff;
+            border-radius: 10px;
+            padding: 1.2rem 1.3rem 1.3rem;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.02), 0 4px 8px rgba(0,0,0,0.01);
+            border: 1px solid #efede9;
+            transition: box-shadow 0.2s;
+        }
+
+        .feature-item:hover {
+            box-shadow: 0 2px 6px rgba(0,0,0,0.03), 0 8px 18px rgba(0,0,0,0.02);
+        }
+
+        .feature-item h3 {
+            font-size: 1.05rem;
+            font-weight: 500;
+            margin-bottom: 0.35rem;
+            color: #1f1f1f;
+        }
+
+        .feature-item p {
+            font-size: 0.9rem;
+            color: #4a4a4a;
+            line-height: 1.5;
+        }
+
+        /* --- FAQ 摘要 --- */
+        .faq-list {
+            margin-top: 0.2rem;
+        }
+
+        .faq-item {
+            margin-bottom: 0.9rem;
+            padding-bottom: 0.9rem;
+            border-bottom: 1px dashed #e3dfd9;
+        }
+
+        .faq-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .faq-q {
+            font-weight: 500;
+            font-size: 1rem;
+            color: #1e1e1e;
+            margin-bottom: 0.2rem;
+        }
+
+        .faq-a {
+            font-size: 0.92rem;
+            color: #4a4a4a;
+            line-height: 1.5;
+        }
+
+        .faq-a a {
+            color: #1e1e1e;
+            text-decoration: underline;
+            text-underline-offset: 2px;
+        }
+
+        /* --- 底部链接 --- */
+        .footer-links {
+            margin-top: 2rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid #e9e6e1;
+            font-size: 0.9rem;
+            color: #6b6b6b;
+        }
+
+        .footer-links a {
+            color: #2c2c2c;
+            text-decoration: underline;
+            text-underline-offset: 2px;
+            font-weight: 450;
+        }
+
+        .footer-links a:hover {
+            color: #3d3d3d;
+        }
+
+        .footer-links .sep {
+            margin: 0 0.5rem;
+            color: #c8c2b9;
+        }
+
+        /* --- 响应式 --- */
+        @media (max-width: 520px) {
+            .page {
+                padding: 1.6rem 1rem 3rem;
+            }
+
+            .hero-headline {
+                font-size: 1.9rem;
+            }
+
+            .grid-2col {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .feature-item {
+                padding: 1rem;
+            }
+
+            .section-title {
+                font-size: 1.15rem;
+            }
+
+            .hero-sub {
+                font-size: 1rem;
+            }
+        }
+
+        @media (min-width: 800px) {
+            .hero-headline {
+                font-size: 2.8rem;
+            }
+
+            .page {
+                padding-top: 3.2rem;
+            }
+        }
+
+        /* 小细节：引用色彩 */
+        .muted-badge {
+            background: #f2f0ec;
+            display: inline-block;
+            padding: 0.1rem 0.5rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            color: #4d4d4d;
+            letter-spacing: 0.02em;
+        }
+    </style>
+</head>
+<body>
+<div class="page">
+
+    <!-- hero 区 -->
+    <header class="hero">
+        <h1 class="hero-headline">
+            关于<span>爱游戏</span>
+        </h1>
+        <p class="hero-sub">
+            一份面向游戏爱好者的内容索引与信息站点。
+            <a href="https://mindex-aiyouxi.com.cn">爱游戏</a>
+            聚合精选资源、开发动态与实用参考，帮助你在游戏领域保持敏锐。
+        </p>
+    </header>
+
+    <!-- 优势区 -->
+    <section>
+        <h2 class="section-title">站点优势 <small>· 信息密度与筛选</small></h2>
+        <div class="grid-2col">
+            <div class="feature-item">
+                <h3>结构化整理</h3>
+                <p>围绕游戏设计、行业动态与技术工具，按主题归类。减少信息噪声，提供可追溯的原文链接。</p>
+            </div>
+            <div class="feature-item">
+                <h3>持续更新</h3>
+                <p>关注独立游戏、精品中文本地化以及开发社区的新动向，保持每月数次的内容补充与修订。</p>
+            </div>
+            <div class="feature-item">
+                <h3>简洁引用</h3>
+                <p>每个条目附注来源与简要说明，不堆砌关键词。方便快速判断是否值得深入了解。</p>
+            </div>
+            <div class="feature-item">
+                <h3>无追踪设计</h3>
+                <p>站点不部署第三方分析脚本，不设置 cookies 追踪。仅提供静态页面内容，尊重访问者隐私。</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 说明区 / 站点介绍 -->
+    <section>
+        <h2 class="section-title">站点说明</h2>
+        <div class="section-text">
+            <p>
+                <a href="https://mindex-aiyouxi.com.cn">爱游戏</a> 是一个非商业的个人维护项目，
+                主要收录与游戏相关的信息源、开发者笔记、设计思路以及文化观察。内容选取标准兼顾实用性与启发性，
+                不对游戏作品本身进行评分或排名。
+            </p>
+            <p>
+                站内所有链接均指向外部原始出处（包括官方页面、开发日志、授权转载等），
+                引用时尽量保留上下文。如果你发现链接失效或信息过时，欢迎通过站点提供的反馈渠道告知。
+            </p>
+            <p style="margin-top: 0.8rem;">
+                <span class="muted-badge">内容性质</span> 
+                <span style="margin-left: 0.3rem; font-size: 0.92rem; color: #4f4f4f;">信息聚合 · 非官方 · 无商业推广</span>
+            </p>
+        </div>
+    </section>
+
+    <!-- FAQ 摘要 -->
+    <section>
+        <h2 class="section-title">常见疑问 <small>· 摘要</small></h2>
+        <div class="faq-list">
+            <div class="faq-item">
+                <div class="faq-q">站点内容主要来自哪里？</div>
+                <div class="faq-a">多数来自公开的开发者博客、游戏媒体、学术讨论及行业报告。每一则链接均标明出处，不隐藏来源。</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-q">是否可以转载或引用站内列表？</div>
+                <div class="faq-a">可以。站内整理本身不设版权限制，但引用时建议直接指向原始链接，以尊重原作者的劳动。</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-q">如何联系站点维护者？</div>
+                <div class="faq-a">目前可通过 <a href="https://mindex-aiyouxi.com.cn">爱游戏</a> 页面底部提供的邮箱地址沟通（页面内可见）。</div>
+            </div>
+        </div>
+        <p style="margin-top: 1rem; font-size: 0.9rem; color: #5b5b5b;">
+            * 更多问题与解答可参考站点内完整 FAQ 页面。
+        </p>
+    </section>
+
+    <!-- 底部链接 -->
+    <div class="footer-links">
+        <span>主要索引：</span>
+        <a href="https://mindex-aiyouxi.com.cn">爱游戏</a>
+        <span class="sep">·</span>
+        <a href="https://mindex-aiyouxi.com.cn" style="text-decoration: none; color: #6b6b6b; cursor: default;">爱游戏</a>
+        <span class="sep">·</span>
+        <a href="https://mindex-aiyouxi.com.cn">爱游戏</a>
+        <span class="sep">·</span>
+        <span style="color: #8a857e;">更新于 2025-04</span>
+    </div>
+
+</div>
+</body>
+</html>

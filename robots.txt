@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://palcospot.github.io/mindex-aiyouxi-com-cn/sitemap.xml
