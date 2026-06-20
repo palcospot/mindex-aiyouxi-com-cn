@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>乐竞体育 · 杂志专题</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+      background-color: #f1f3f5;
+      color: #1e2a3a;
+      line-height: 1.6;
+      padding: 2rem 1rem;
+    }
+
+    .page {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    /* Hero 横幅 */
+    .hero {
+      background: linear-gradient(145deg, #f8fafc 0%, #e9edf2 100%);
+      border-radius: 32px;
+      padding: 3rem 2rem;
+      margin-bottom: 2.5rem;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+      border: 1px solid rgba(0, 0, 0, 0.03);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -20%;
+      right: -10%;
+      width: 260px;
+      height: 260px;
+      background: radial-gradient(circle, rgba(200, 200, 220, 0.15) 0%, transparent 70%);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    .hero h1 {
+      font-size: 2.4rem;
+      font-weight: 350;
+      letter-spacing: 1px;
+      color: #1f2a3f;
+      margin-bottom: 0.6rem;
+    }
+
+    .hero h1 strong {
+      font-weight: 550;
+      color: #243b53;
+    }
+
+    .hero .tagline {
+      font-size: 1.1rem;
+      color: #3b4b62;
+      max-width: 580px;
+      border-left: 3px solid #7d8a9b;
+      padding-left: 1.2rem;
+      margin-top: 0.8rem;
+    }
+
+    /* 卡片容器 */
+    .card-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 1.8rem;
+    }
+
+    .card {
+      background: #ffffff;
+      border-radius: 24px;
+      padding: 2rem 2.2rem;
+      border: 1px solid #e2e6ec;
+      box-shadow: 0 6px 12px -8px rgba(0, 10, 30, 0.06);
+      transition: box-shadow 0.2s ease, transform 0.2s ease;
+    }
+
+    .card:hover {
+      box-shadow: 0 12px 24px -12px rgba(0, 10, 30, 0.12);
+      transform: translateY(-2px);
+    }
+
+    .card h2 {
+      font-size: 1.5rem;
+      font-weight: 400;
+      color: #1b2b41;
+      margin-bottom: 0.9rem;
+      border-bottom: 1px solid #eef1f6;
+      padding-bottom: 0.6rem;
+    }
+
+    .card p {
+      font-size: 1rem;
+      color: #2f3e52;
+      margin-bottom: 1rem;
+    }
+
+    .card p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* 特点与场景的混合列表 */
+    .feature-list {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 0.9rem;
+      margin-top: 0.5rem;
+    }
+
+    .feature-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.7rem;
+      background: #f7f9fc;
+      padding: 0.75rem 1rem;
+      border-radius: 14px;
+      border: 1px solid #e8ecf2;
+    }
+
+    .feature-item::before {
+      content: '▹';
+      color: #5a6f88;
+      font-size: 1.2rem;
+      line-height: 1.4;
+      flex-shrink: 0;
+    }
+
+    /* FAQ 摘要 */
+    .faq-mini {
+      background: #f4f7fb;
+      border-radius: 18px;
+      padding: 1.2rem 1.6rem;
+      margin-top: 1.2rem;
+    }
+
+    .faq-mini summary {
+      font-weight: 480;
+      color: #1b3147;
+      cursor: pointer;
+      padding: 0.2rem 0;
+      font-size: 1rem;
+    }
+
+    .faq-mini p {
+      margin-top: 0.7rem;
+      color: #31445b;
+      font-size: 0.95rem;
+      line-height: 1.5;
+    }
+
+    /* 页尾提示 */
+    .footer-note {
+      margin-top: 2.8rem;
+      padding: 1.8rem 0 0.6rem;
+      border-top: 1px solid #d9dfe7;
+      text-align: center;
+      font-size: 0.95rem;
+      color: #3e5068;
+    }
+
+    .footer-note a {
+      color: #243b53;
+      text-decoration: none;
+      border-bottom: 1px dotted #7c8da4;
+      transition: border-color 0.15s;
+    }
+
+    .footer-note a:hover {
+      border-bottom-color: #1b2b41;
+    }
+
+    .footer-note .muted {
+      display: inline-block;
+      margin-top: 0.6rem;
+      color: #6b7d94;
+      font-size: 0.85rem;
+    }
+
+    /* 响应式 */
+    @media (min-width: 640px) {
+      .hero h1 {
+        font-size: 2.8rem;
+      }
+      .feature-list {
+        grid-template-columns: 1fr 1fr;
+      }
+      .card {
+        padding: 2.4rem 2.8rem;
+      }
+    }
+
+    @media (min-width: 840px) {
+      body {
+        padding: 3rem 2rem;
+      }
+      .hero {
+        padding: 4rem 3.5rem;
+      }
+      .hero h1 {
+        font-size: 3.2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+  <!-- 首页横幅 hero -->
+  <div class="hero">
+    <h1><strong>乐竞体育</strong> · 从一瞥到确信</h1>
+    <div class="tagline">
+      一个聚合多元运动资讯与实用信息的数字场所，让访问者快速识别平台的核心用途。
+    </div>
+  </div>
+
+  <!-- 三段自然介绍 + 补充卡片，杂志式布局 -->
+  <div class="card-grid">
+
+    <!-- 卡片一：背景与定位 -->
+    <div class="card">
+      <h2>不止是名字，更是方向</h2>
+      <p>
+        当用户第一次打开 <a href="https://zhs-lejingsports.com" style="color:#1f3a57; text-decoration: underline; text-underline-offset: 3px; text-decoration-color: #b0c0d4;">乐竞体育</a>，往往带着一个简单问题：“这里提供什么？” 网站没有选择铺陈大量标语，而是用清晰的功能分区和资讯流来回答。无论是关注赛事动态、运动文化，还是工具性内容，页面结构都在降低识别成本。
+      </p>
+      <p>
+        这一设计思路源自对“快速理解”的重视——用户不需要猜测，浏览几秒就能判断是否与自己的兴趣重合。从赛事日历到运动知识短文，信息以卡片、列表和摘要形式呈现，节奏平缓。
+      </p>
+    </div>
+
+    <!-- 卡片二：三组自然介绍（特点与场景融合） -->
+    <div class="card">
+      <h2>日常使用的三个切面</h2>
+      <div class="feature-list">
+        <div class="feature-item">
+          <div>
+            <strong>资讯聚合</strong><br>
+            体育新闻、赛事结果、运动员动态等内容经过筛选归类，用户可按运动项目或时间线浏览，无需在多个站点间跳转。
+          </div>
+        </div>
+        <div class="feature-item">
+          <div>
+            <strong>资料与工具</strong><br>
+            常见运动规则、术语说明、简易计算工具（如BMI/配速）嵌入在对应栏目中，适合快速查阅，不干扰主要浏览路径。
+          </div>
+        </div>
+        <div class="feature-item">
+          <div>
+            <strong>社区氛围</strong><br>
+            评论区与话题标签让用户围绕赛事或运动技巧展开讨论，保持轻量、友好的交流环境，不过度强调社交属性。
+          </div>
+        </div>
+        <div class="feature-item">
+          <div>
+            <strong>多端适配</strong><br>
+            页面在不同屏幕尺寸下均保持可读性与操作逻辑，移动端浏览时导航、搜索、卡片布局都经过专门调整。
+          </div>
+        </div>
+      </div>
+      <p style="margin-top: 1.2rem; color: #3b4d64;">
+        上述切面并非独立存在——例如在浏览某一项运动资讯时，同页面会附带相关规则链接和近期讨论，形成自然的上下文关联。
+      </p>
+    </div>
+
+    <!-- 卡片三：为什么这样设计 ＋ FAQ摘要 -->
+    <div class="card">
+      <h2>减少疑惑，增加连贯</h2>
+      <p>
+        很多初次到访的用户并非资深体育迷，他们可能只是想查询某个赛程，或了解一项冷门运动的规则。<a href="https://zhs-lejingsports.com" style="color:#1f3a57; text-decoration: none; font-weight: 450;">乐竞体育</a> 在首页刻意避免使用过于专业的术语堆叠，而是用“运动项目分类”“热门话题”“常见问题”等通俗标签引导视线。每个模块都附带简短说明，让用户即使不点击也能大致了解内容范畴。
+      </p>
+      <p>
+        此外，搜索框和导航栏始终固定于顶部，无论浏览到页面何处都能快速跳转或缩小范围。这种结构上的“低摩擦”设计，也是为了让使用意图明确的用户更快找到目标。
+      </p>
+
+      <!-- FAQ 摘要（折叠式） -->
+      <details class="faq-mini">
+        <summary>❓ 一些常见疑问与回答</summary>
+        <p>
+          <strong>Q：网站主要覆盖哪些运动？</strong><br>
+          A：足球、篮球、网球、田径、游泳、自行车等主流项目均有专门板块，同时包含部分小众运动的基础介绍。内容会随季节和赛事动态更新。
+        </p>
+        <p style="margin-top: 0.7rem;">
+          <strong>Q：需要注册才能浏览吗？</strong><br>
+          A：绝大多数资讯和工具无需注册即可查看。评论、收藏等互动功能需创建轻量账户，注册流程仅需邮箱和昵称。
+        </p>
+        <p style="margin-top: 0.7rem;">
+          <strong>Q：信息更新频率如何？</strong><br>
+          A：日常资讯每日更新，重大赛事期间会临时增加快讯栏目。历史资料与规则说明保持季度审核，确保准确。
+        </p>
+      </details>
+    </div>
+  </div>
+
+  <!-- 页尾访问提示 -->
+  <div class="footer-note">
+    <div>
+      若想进一步了解内容架构和最新运动动态，可浏览 <a href="https://zhs-lejingsports.com">乐竞体育</a> 主页。没有多余的跳转引导，所有信息都陈列在应当出现的位置。
+    </div>
+    <div class="muted">
+      基于真实使用场景 · 杂志专题式呈现
+    </div>
+  </div>
+</div>
+</body>
+</html>
