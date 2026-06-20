@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+  <title>PG模拟器 · 站点介绍</title>
+  <style>
+    /* 重置 & 基础 */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+      background: #f3f8fc; /* 极浅蓝灰底 */
+      color: #1d2b3a;
+      line-height: 1.7;
+      padding: 20px 16px 40px;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .page-wrapper {
+      max-width: 820px;
+      width: 100%;
+      background: #ffffff;
+      border-radius: 32px;
+      box-shadow: 0 8px 28px rgba(0, 45, 60, 0.08);
+      padding: 28px 22px 40px;
+      transition: padding 0.2s;
+    }
+
+    /* 网格卡片背景装饰 (微妙) */
+    .page-wrapper {
+      background-image: 
+        linear-gradient(rgba(0, 160, 160, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 160, 160, 0.03) 1px, transparent 1px);
+      background-size: 24px 24px;
+    }
+
+    /* 头部 & 文章元信息 */
+    .article-header {
+      margin-bottom: 28px;
+      border-bottom: 2px solid #e4f0f5;
+      padding-bottom: 12px;
+    }
+    .article-header h1 {
+      font-size: 2rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      color: #0e4d5e;
+      margin-bottom: 8px;
+      line-height: 1.2;
+    }
+    .article-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px 18px;
+      font-size: 0.9rem;
+      color: #5e7f8a;
+    }
+    .article-meta span {
+      display: inline-flex;
+      align-items: center;
+    }
+    .article-meta span::before {
+      content: "•";
+      margin-right: 6px;
+      color: #2bafaf;
+      font-weight: bold;
+    }
+    .article-meta span:first-child::before {
+      content: none;
+      margin: 0;
+    }
+
+    /* 导语 / 引言 */
+    .lead {
+      background: #eef7fa;
+      border-left: 4px solid #2aabab;
+      padding: 16px 20px;
+      border-radius: 0 16px 16px 0;
+      margin-bottom: 28px;
+      font-size: 1.08rem;
+      color: #1f4452;
+    }
+    .lead p {
+      margin: 0;
+    }
+
+    /* 正文段落 */
+    .content p {
+      margin-bottom: 1.3em;
+    }
+    .content p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* 引用提示块 (特殊区块) */
+    .insight-box {
+      background: #ffffff;
+      border: 1px solid #d0e7ed;
+      border-radius: 24px;
+      padding: 20px 22px;
+      margin: 24px 0 28px;
+      box-shadow: 0 2px 8px rgba(0, 100, 100, 0.06);
+      position: relative;
+    }
+    .insight-box::before {
+      content: "💬";
+      font-size: 1.8rem;
+      opacity: 0.25;
+      position: absolute;
+      right: 20px;
+      top: 8px;
+      transform: rotate(8deg);
+    }
+    .insight-box p {
+      font-style: normal;
+      color: #1b3d48;
+      margin-bottom: 0.5em;
+    }
+    .insight-box .insight-label {
+      font-weight: 600;
+      color: #0d6979;
+      letter-spacing: 0.02em;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      display: block;
+      margin-bottom: 6px;
+    }
+
+    /* 特点卡片 (两个并排，移动端自适应) */
+    .feature-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin: 28px 0 20px;
+    }
+    .feature-card {
+      background: #f7fcfe;
+      border-radius: 24px;
+      padding: 20px 16px;
+      border: 1px solid #cde3ea;
+      transition: box-shadow 0.2s;
+    }
+    .feature-card:hover {
+      box-shadow: 0 4px 14px rgba(0, 120, 120, 0.08);
+    }
+    .feature-card h3 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #0e5d6e;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .feature-card h3 span {
+      font-size: 1.4rem;
+    }
+    .feature-card p {
+      font-size: 0.95rem;
+      color: #2a4d58;
+      margin: 0;
+    }
+
+    /* 场景小段落 (点缀) */
+    .scene-note {
+      background: #eef5f7;
+      border-radius: 20px;
+      padding: 14px 20px;
+      margin: 18px 0 22px;
+      font-size: 0.98rem;
+      color: #1a4755;
+      text-align: center;
+    }
+    .scene-note i {
+      font-style: normal;
+      background: #d8edf2;
+      padding: 0 6px;
+      border-radius: 6px;
+    }
+
+    /* FAQ 摘要 (紧凑) */
+    .faq-mini {
+      margin: 30px 0 16px;
+      border-top: 2px dashed #cde3ea;
+      padding-top: 24px;
+    }
+    .faq-mini summary {
+      font-weight: 600;
+      font-size: 1.05rem;
+      cursor: pointer;
+      color: #106272;
+      padding: 6px 0;
+      list-style: none;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .faq-mini summary::before {
+      content: "▸";
+      color: #2aabab;
+      font-size: 1.2rem;
+      transition: transform 0.15s;
+    }
+    .faq-mini details[open] summary::before {
+      transform: rotate(90deg);
+    }
+    .faq-mini details p {
+      margin: 8px 0 10px 22px;
+      color: #2a525f;
+      font-size: 0.95rem;
+      background: #f6fbfd;
+      padding: 10px 14px;
+      border-radius: 14px;
+    }
+
+    /* 访问句 & 链接自然嵌入 */
+    .access-sentence {
+      background: #e0f0f5;
+      border-radius: 40px;
+      padding: 16px 22px;
+      margin: 28px 0 0;
+      text-align: center;
+      font-size: 1rem;
+      font-weight: 450;
+      color: #104551;
+      border: 1px solid #b8dce5;
+      box-shadow: 0 1px 6px rgba(0, 60, 60, 0.06);
+    }
+    .access-sentence a {
+      color: #0d6f82;
+      text-decoration: none;
+      font-weight: 600;
+      border-bottom: 2px solid #7fcbd6;
+      padding-bottom: 1px;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .access-sentence a:hover {
+      border-bottom-color: #0a5a6b;
+      background: #d0eaf0;
+      border-radius: 6px;
+      padding: 0 4px;
+    }
+
+    /* 页脚小字 */
+    .footer-note {
+      margin-top: 28px;
+      font-size: 0.78rem;
+      color: #7b9ba7;
+      text-align: center;
+      border-top: 1px solid #dfeef3;
+      padding-top: 18px;
+    }
+
+    /* 响应式细调 */
+    @media (max-width: 500px) {
+      .page-wrapper {
+        padding: 20px 16px 30px;
+      }
+      .article-header h1 {
+        font-size: 1.6rem;
+      }
+      .feature-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+      }
+      .lead {
+        padding: 14px 16px;
+      }
+      .access-sentence {
+        font-size: 0.95rem;
+        padding: 14px 16px;
+      }
+    }
+
+    /* 小细节：链接下划线统一 */
+    a {
+      color: #0a697c;
+    }
+    a:focus-visible {
+      outline: 2px solid #2aabab;
+      outline-offset: 2px;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body>
+  <div class="page-wrapper">
+    <!-- 文章头部 -->
+    <div class="article-header">
+      <h1>关于PG模拟器 · 一点说明</h1>
+      <div class="article-meta">
+        <span>站点笔记</span>
+        <span>2025 · 春</span>
+        <span>阅读约 4 分钟</span>
+      </div>
+    </div>
+
+    <!-- 导语 -->
+    <div class="lead">
+      <p>几年前开始接触这类轻量工具，慢慢发现一个靠谱的落脚点挺重要。这个页面不是广告，更像是一份使用前的随笔——聊聊我为什么觉得 <a href="https://m-wap-pg.com">PG模拟器</a> 值得放进书签。</p>
+    </div>
+
+    <!-- 正文 -->
+    <div class="content">
+      <p>最早是在一个技术论坛看到有人提起「PG模拟器」，当时手头正好在试几个类似的环境，但要么界面太沉，要么文档乱糟糟。顺着链接摸过去，第一印象是干净——没有弹窗，没有夸张的标语，首页就一行说明和一个简单的功能入口。后来陆续用了大半年，慢慢成了习惯。</p>
+
+      <p>从站点本身来说，它并不追求「大而全」。页面结构很克制，主要围绕几个模拟场景展开，加载快，移动端适配也自然。我试过在通勤路上用手机打开，排版没有错位，按钮间距也舒服，这一点很多同类站点做不到。说到底，工具型页面最要紧的是「不添乱」，它做到了。</p>
+
+      <p>另外想提一点：站内没有收集多余的信息，也没有诱导注册或下载。对于只是偶尔用一下的人来说，这种低介入感反而让人愿意多停留。我身边几个朋友也是被推荐后，直接就用了，没有多余的咨询步骤。</p>
+    </div>
+
+    <!-- 引用提示块 -->
+    <div class="insight-box">
+      <span class="insight-label">📌 使用提示</span>
+      <p>模拟器本身不存储任何用户数据，每次会话独立。建议在稳定的网络环境下使用，避免因页面刷新导致状态丢失。如果你需要长期保存配置，可以截图或者用浏览器收藏功能做个备忘。</p>
+      <p style="margin-bottom: 0; font-size: 0.92rem; color: #306d7a;">—— 一个小建议，非官方说明，个人经验而已。</p>
+    </div>
+
+    <!-- 特征卡片 -->
+    <div class="feature-grid">
+      <div class="feature-card">
+        <h3><span>📱</span> 移动优先</h3>
+        <p>页面布局根据屏幕尺寸自动调整，大按钮、易读字号，单手操作无压力。</p>
+      </div>
+      <div class="feature-card">
+        <h3><span>🧩</span> 轻量内核</h3>
+        <p>没有多余插件或后台进程，打开即用，关闭即走。对低性能设备也很友好。</p>
+      </div>
+    </div>
+
+    <!-- 场景点缀 -->
+    <div class="scene-note">
+      <i>日常场景</i> ｜ 快速上手 · 临时测试 · 思路验证 · 移动端演示
+    </div>
+
+    <!-- FAQ 摘要 (折叠) -->
+    <div class="faq-mini">
+      <details>
+        <summary>FAQ 摘要 · 两个常见问题</summary>
+        <p><strong>问：</strong> 页面有时候加载慢，和网络有关系吗？<br>
+        <strong>答：</strong> 是的，因为资源都从主站拉取，建议检查Wi-Fi或切换4G/5G。另外早高峰时段可能稍慢，稍等几秒即可。</p>
+        <p><strong>问：</strong> 可以在电脑浏览器上用吗？<br>
+        <strong>答：</strong> 当然可以，页面自适应桌面端，窗口缩放也不会变形。和手机版体验基本一致。</p>
+      </details>
+    </div>
+
+    <!-- 访问句：自然嵌入链接 -->
+    <div class="access-sentence">
+      如果你也在找一款不折腾的模拟环境，不妨试试 <a href="https://m-wap-pg.com">PG模拟器</a> —— 至少在我这儿，它一直没让我失望过。
+    </div>
+
+    <!-- 页脚 -->
+    <div class="footer-note">
+      站点介绍 · 个人随笔 · 内容仅供参考
+    </div>
+  </div>
+</body>
+</html>
